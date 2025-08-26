@@ -4,6 +4,7 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
+use App\Http\Controllers\OrderWizardController;
 
 /**
  * Root → preusmeri na podrazumevani jezik
@@ -50,7 +51,12 @@ Route::group([
     Route::get('/product/{slug}', function ($locale, $slug) {
         return redirect()->to("/{$locale}/planovi/{$slug}", 301);
     });
-});
+    
+    Route::get('/naruci', [OrderWizardController::class,'index'])->name('wizard.index');
+    Route::post('/naruci/price', [OrderWizardController::class,'price'])->name('wizard.price');
+    Route::post('/naruci/confirm', [OrderWizardController::class,'confirm'])->name('wizard.confirm');
+    Route::get('/narudzbina/{id}/potvrda', [OrderWizardController::class,'confirmation'])->name('wizard.confirmation');
+    });
 
 /**
  * Auth/Dashboard/Profile rute mogu ostati BEZ locale prefiksa

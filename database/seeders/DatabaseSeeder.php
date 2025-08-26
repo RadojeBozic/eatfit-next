@@ -13,6 +13,9 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
+
+            $this->call(\Database\Seeders\PageSeed::class);    // ako želiš demo page
+            $this->call(\Database\Seeders\WizardSeed::class);  // ← OVO JE KLJUČNO
         // User::factory(10)->create();
 
         User::factory()->create([
