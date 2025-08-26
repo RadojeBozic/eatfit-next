@@ -1,11 +1,36 @@
-* text=auto eol=lf
+# 1) Normalizuj sva tekstualna u LF u repozitorijumu
+* text=auto
 
-*.blade.php diff=html
-*.css diff=css
-*.html diff=html
-*.md diff=markdown
-*.php diff=php
+# 2) Forsiraj LF za source fajlove (u working tree i u repou)
+*.php      text eol=lf
+*.blade.php text eol=lf
+*.js       text eol=lf
+*.jsx      text eol=lf
+*.ts       text eol=lf
+*.tsx      text eol=lf
+*.css      text eol=lf
+*.scss     text eol=lf
+*.json     text eol=lf
+*.md       text eol=lf
+*.yml      text eol=lf
+*.yaml     text eol=lf
 
-/.github export-ignore
-CHANGELOG.md export-ignore
-.styleci.yml export-ignore
+# 3) Binarni fajlovi: ne diraj (bez konverzije EOL)
+*.png  -text
+*.jpg  -text
+*.jpeg -text
+*.gif  -text
+*.webp -text
+*.ico  -text
+*.pdf  -text
+*.ttf  -text
+*.otf  -text
+*.woff -text
+*.woff2 -text
+# (SVG je tekstualan; ostavi kao text ako želiš diff, ili -text ako želiš mir u commitima)
+# *.svg -text
+
+# 4) Opciona ekskluzija iz export-a (ostavi kako ti treba)
+ /.github          export-ignore
+ CHANGELOG.md      export-ignore
+ .styleci.yml      export-ignore
